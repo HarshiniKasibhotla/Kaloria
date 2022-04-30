@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dietician</title>
+    <!-- CSS only -->
+    <link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet"/>
+    <link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+<div class="container main-container">
+    <div class="row pt-4">
+        <div class="col-5 m-auto text-center">
+            <h1>KALORIA</h1>
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-10 chart-form-container">
+
+            <form class="needs-validation show dietcian-approval-form">
+                <div class="row pt-12">
+                    <div class="col-13 second-container">
+                        <div class="row pt-12">
+                            <div class="col-12 m-auto">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item verified-nav-item active col-6"
+                                        onclick="navigationClick('Verified')"><a class="nav-link"
+                                                                                 aria-current="page" href="#">Approved
+                                        Appointments
+                                    </a></li>
+                                    <li class="nav-item waiting-nav-item col-6"
+                                        onclick="navigationClick('Waiting')"><a class=" nav-link" href="#">Appointments
+                                        Queue
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+
+                            <div class="col-12 dietician-sub-container">
+
+
+                                <div class="row pt-12">
+                                    <div class=" verified-appointments-container">
+                                        <div id="verifiedContent">
+
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone Number</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="entry : ${verifiedAppointment}">
+                                                    <td><a th:href="@{/userDietChart(userID=${entry.userId})}"
+                                                           th:text="${entry.firstName}"></a></td>
+                                                    <td th:text="${entry.email}"></td>
+                                                    <td th:text="${entry.mobile}"></td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <div class=" waiting-appointments-container">
+                                        <div id="waitingContent">
+
+                                       
+
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="entry : ${waitingAppointment}">
+                                                    <td th:text="${entry.firstName}"></td>
+                                                    <td th:text="${entry.email}"></td>
+                                                    <td th:text="${entry.mobile}"></td>
+                                                    <td>
+                                                        <a class="btn btn-success"
+                                                           th:href="@{/Dietician/{ApproveUserId}/1(ApproveUserId = ${entry.userId})}">Approve</a>
+
+                                                        <a class="btn btn-danger"
+                                                           th:href="@{/Dietician/{DenyUserId}/0(DenyUserId = ${entry.userId})}">Deny</a>
+
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/appointmentApproval.js"></script>
+</body>
+
+</html>

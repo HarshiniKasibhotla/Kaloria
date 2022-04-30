@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Areas of expertise</th>
+			<th>License Id</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="entry : ${verifiedDieticians}">
+			<td th:text="${entry.dieticianName}"></td>
+			<td th:text="${entry.dAddress}"></td>
+			<td th:text="${entry.expertise}"></td>
+			<td th:text="${entry.license}"></td>
+		</tr>
+	</tbody>
+</table>

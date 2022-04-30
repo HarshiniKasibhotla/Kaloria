@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/app.css" rel="stylesheet" />
+<title> Diet Chart | Kaloria</title>
+</head>
+<body>
+	<div class="container main-container">
+		<div class="row pt-4">
+			<div class="col-5 m-auto text-center">
+				<h1>Diet Chart</h1>
+			</div>
+		</div>
+
+		<div class="form-container">
+			<div class="category"
+				th:each="chartElements : ${dietChart}">
+				<h3 th:text="${chartElements.key}"></h3>
+				<div class="row mb-2">
+					<label class="col-sm-6 col-form-label"><strong>Item</strong></label>
+					<label class="col-sm-6 col-form-label"><strong>Calories
+							Recommended</strong></label>
+				</div>
+				<div class="row mb-2" th:each="chart : ${chartElements.value}">
+					<label class="col-sm-6 col-form-label" th:text="${chart.key}" /> <label
+						class="col-sm-6 col-form-label" th:text="${chart.value}" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dietSuggestions.js"></script>
+</body>
+</html>

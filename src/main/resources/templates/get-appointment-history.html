@@ -1,0 +1,52 @@
+<div class="appointment-sidenav">
+    <ul class="nav flex-column">
+        <li class="nav-item li-past-appointment">
+            <a class="nav-link" onclick="showAppointments('past')">Past Appointments</a>
+        </li>
+        <li class="nav-item li-upcoming-appointment active">
+            <a class="nav-link active" onclick="showAppointments('upcoming')">Upcoming Appointments</a>
+        </li>
+    </ul>
+</div>
+
+<div class="appointment-main">
+    <table class="past-appointments hide">
+        <thead>
+        <tr>
+            <th class="col-3">Dietician Name</th>
+            <th class="">Address</th>
+            <th class="col-3">Appointment Date</th>
+            <th> Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${pastAppointments}">
+            <td class="col-3" th:text="${appointment.firstName}"></td>
+            <td class="col-3" th:text="${appointment.address}"></td>
+            <td th:text="${appointment.appointmentTime}"></td>
+            <td>
+                <a class="btn btn-default" th:href="@{/feedback(appointment-id = ${appointment.appointmentId},
+                dietitianID = ${appointment.dieticianId})}" th:if="${appointment.isCompleted == true && appointment.rating == 0}">Add feedback</a>
+                <div th:if="${appointment.rating != 0}"
+                     th:text="${appointment.rating}"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="upcoming-appointments">
+        <thead>
+        <tr>
+            <th class="col-3">Dietician Name</th>
+            <th class="">Address</th>
+            <th class="col-3">Appointment Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${futureAppointments}">
+            <td class="col-3" th:text="${appointment.firstName}"></td>
+            <td class="col-3" th:text="${appointment.address}"></td>
+            <td th:text="${appointment.appointmentTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

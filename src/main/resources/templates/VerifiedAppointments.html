@@ -1,0 +1,18 @@
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone Number</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="entry : ${verifiedAppointment}">
+			<td th:text="${entry.firstName}"></td>
+			<td th:text="${entry.email}"></td>
+			<td th:text="${entry.mobile}"></td>
+
+		</tr>
+	</tbody>
+</table>

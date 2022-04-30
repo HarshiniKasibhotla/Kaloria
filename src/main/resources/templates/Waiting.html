@@ -1,0 +1,25 @@
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Areas of expertise</th>
+			<th>License Id</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="entry : ${waitingDieticians}">
+			<td th:text="${entry.dieticianName}"></td>
+			<td th:text="${entry.dAddress}"></td>
+			<td th:text="${entry.expertise}"></td>
+			<td th:text="${entry.license}"></td>
+			<td>
+				<a class="btn btn-success" th:href="@{/Dietician/{ApproveDieticienId}/1(ApproveDieticienId = ${entry.dieticianId})}">Approve</a> 
+				
+				<a class="btn btn-danger" th:href="@{/Dietician/{DenyDieticienId}/0(DenyDieticienId = ${entry.dieticianId})}">Deny</a> 
+				
+			</td>
+		</tr>
+	</tbody>
+</table>

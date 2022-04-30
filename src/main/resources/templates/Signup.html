@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<!-- CSS only -->
+<link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet" />
+<link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet" />
+<link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+	<div class="container main-container">
+		<div class="row pt-4">
+			<div class="col-5 m-auto text-center">
+				<h1>KALORIA</h1>
+			</div>
+		</div>
+		<div class="row pt-2">
+			<div class="col-5 m-auto">
+				<ul class="nav nav-tabs">
+					<li class="nav-item user-signup-nav-item active col-6"
+						onclick="navigationClick('User')"><a class="nav-link"
+						aria-current="page" href="#">Sign up as a user</a></li>
+					<li class="nav-item doctor-signup-nav-item col-6"
+						onclick="navigationClick('Dietician')"><a class=" nav-link"
+						href="#">Sign up as a dietician</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="mainGridCentreInfoBox" th:if="${errorMessage}">
+			<h3 class="errorInfo" th:text="${errorMessage}"></h3>
+		</div>
+		<div class="row pt-3">
+			<div class="col-5 signup-form-container">
+				<!--  <form action="#" th:action="@{/register}" method="post"
+					class="needs-validation show user-signup-form"> -->
+				<form action="#" th:action="@{/register}" method="POST"
+					th:object="${user}" class="needs-validation show user-signup-form">
+
+					<div class="row mb-2">
+						<label for="firstName" class="col-sm-4 col-form-label">First
+							Name</label>
+						<div class="col-sm-8">
+							<input type="text" field="*{firstName}" class="form-control"
+								id="firstName" name="firstName" required>
+							<div class="invalid-feedback">First name is mandatory.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="lastName" class="col-sm-4 col-form-label">Last
+							Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="lastName"
+								field="*{lastName}" name="lastName" required>
+							<div class="invalid-feedback">Last name is mandatory.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="email" class="col-sm-4 col-form-label">Email</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control" id="email" name="email"
+								field="*{email}" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="mobileNo" class="col-sm-4 col-form-label">Mobile
+							number</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="mobileNo"
+								name="mobileNo" field="*{mobileNo}" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="dateOfBirth" class="col-sm-4 col-form-label">Birth
+							Date</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="yyyy-MM-dd" class="form-control"
+								id="dateOfBirth" name="dateOfBirth" field="*{dateOfBirth}"
+								required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="gender" class="col-sm-4 col-form-label">Gender</label>
+						<div class="col-sm-8">
+							<select name="gender" id="gender" class="form-select"
+								field="*{gender}" aria-label="Default select example">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+							<div class="invalid-feedback">Gender is required.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="city" class="col-sm-4 col-form-label">City </label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="city" name="city"
+								field="*{city}" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="zipCode" class="col-sm-4 col-form-label">Zip
+							Code </label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="zipCode"
+								field="*{zipCode}" name="zipCode" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="password" class="col-sm-4 col-form-label">Password</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" id="password"
+								field="*{password}" name="password" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="container text-right col-12">
+							<div>
+								<div class="">
+									<button class="btn btn-primary w-100 mt-4" type="submit">Sign
+										up</button>
+								</div>
+							</div>
+							<div>
+								<div class="text-center pt-1">
+									<a th:href="@{/login}">Already have an account? </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<form action="#" th:action="@{/registerDietician}" method="post"
+					class="needs-validation hide doctor-signup-form">
+					<div class="row mb-2">
+						<label for="firstName" class="col-sm-4 col-form-label">First
+							Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="firstName"
+								name="firstName" required>
+							<div class="invalid-feedback">First name is mandatory.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="lastName" class="col-sm-4 col-form-label">Last
+							Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="lastName"
+								name="lastName" required>
+							<div class="invalid-feedback">Last name is mandatory.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="email" class="col-sm-4 col-form-label">Email</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control" id="email" name="email"
+								required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="mobileNo" class="col-sm-4 col-form-label">Mobile
+							number</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="mobileNo"
+								name="mobileNo" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="dateOfBirth" class="col-sm-4 col-form-label">Birth
+							Date</label>
+						<div class="col-sm-8">
+							<input type="date" class="form-control" id="dateOfBirth"
+								name="dateOfBirth" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="gender" class="col-sm-4 col-form-label">Gender</label>
+						<div class="col-sm-8">
+							<select name="gender" id="gender" class="form-select"
+								field="*{gender}" aria-label="Default select example">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+							<div class="invalid-feedback">Gender is required.</div>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="password" class="col-sm-4 col-form-label">Password</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" id="password"
+								name="password" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="qualification" class="col-sm-4 col-form-label">Qualification</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="qualification"
+								name="qualification" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="registrationId" class="col-sm-4 col-form-label">Registration
+							ID</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="registrationId"
+								name="registrationId" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="areaOfExpertise" class="col-sm-4 col-form-label">Areas
+							of Expertise</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" id="areaOfExpertise"
+								name="areaOfExpertise" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="address" class="col-sm-4 col-form-label">Address</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="address"
+								name="address" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="city" class="col-sm-4 col-form-label">City</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="city" name="city"
+								required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="zipCode" class="col-sm-4 col-form-label">Zip
+							Code</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="zipCode"
+								name="zipCode" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="availabilityHours" class="col-sm-4 col-form-label">Availability
+							Hours</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="availabilityHours"
+								name="availabilityHours" required placeholder="9:00 - 13:00 (24 hour format)">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<label for="timeSlot" class="col-sm-4 col-form-label">Time
+							Slot <br>(in minutes)
+						</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="timeSlot"
+								name="timeSlot" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="container text-right">
+							<div>
+								<div class="">
+									<button class="btn btn-primary w-100 mt-4" type="submit">Sign
+										up</button>
+								</div>
+							</div>
+							<div>
+								<div class="text-center pt-1">
+									<a th:href="@{/login}">Already have an account? </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="styles/cssAndjs/signupModule.js"></script>
+	<script src="styles/cssAndjs/bootstrap.min.js"></script>
+</body>
+
+</html>

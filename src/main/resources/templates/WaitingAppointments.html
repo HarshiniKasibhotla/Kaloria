@@ -1,0 +1,25 @@
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Mobile</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="entry : ${waitingAppointment}">
+			<td th:text="${entry.firstName}"></td>
+			<td th:text="${entry.email}"></td>
+			<td th:text="${entry.mobile}"></td>
+			<td><a class="btn btn-success"
+				th:href="@{/User/{ApproveUserId}/1(ApproveUserId = ${entry.userId})}">Approve</a>
+
+				<a class="btn btn-danger"
+				th:href="@{/User/{DenyUserId}/0(DenyUserId = ${entry.userId})}">Deny</a>
+
+			</td>
+		</tr>
+	</tbody>
+</table>

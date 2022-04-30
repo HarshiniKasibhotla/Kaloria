@@ -1,0 +1,104 @@
+.main-container{
+    background-color: #fafafa;
+    min-height: 98vh;
+    padding-bottom: 1em;
+}
+.main-container .nav-tabs{
+    border-bottom: 0px
+}
+.nav-link{
+    color: #76D7C4;
+}
+.nav-link:hover, .nav-link:focus{
+    color: #48C9B0;
+}
+.main-container .nav-tabs .nav-link{
+    border: 0px;
+    border-bottom: 1px solid #76D7C4;
+}
+.main-container .nav-tabs .nav-link:focus, .main-container .nav-tabs .nav-item.active .nav-link{
+    border: 1px solid #76D7C4;
+    border-bottom: none;
+    background-color: #fff;
+}
+a, a:not([href]):not([class]){
+    color: #76D7C4;
+    text-decoration: none;
+}
+
+h1{
+    color: #1ABC9C;
+}
+
+a:hover, a:not([href]):not([class]):hover {
+    cursor: pointer;
+    color: #48C9B0;
+    text-decoration: none;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: none;
+}
+
+td, th {
+  border: none;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #dddddd;
+}
+
+.btn-primary{
+    background-color: #76D7C4;
+    border-color: #76D7C4;
+}
+
+.btn-primary:hover{
+    background-color: #48C9B0;
+    border-color: #48C9B0;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.display-inline-block{
+    display: inline-block;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+.login-form-container, .signup-form-container{
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    margin: auto;
+    padding: 2em;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.invalid-feedback {
+    color: #ff606e;
+}
+ 
+.valid-feedback {
+    color: #2acc80;
+}

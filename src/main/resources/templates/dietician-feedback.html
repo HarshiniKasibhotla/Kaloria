@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Dietician</title>
+    <!-- CSS only -->
+    <link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet" />
+    <link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet" />
+    <link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+<div class="container main-container">
+    <div class="row pt-4">
+        <div class="col-5 m-auto text-center">
+            <h1>KALORIA</h1>
+        </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-5 form-container">
+            <form th:action="@{/feedback/submit}"  method="POST">
+                <div class="row mb-2">
+                    <label for="feedback" class="col-sm-4 col-form-label">Feedback</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="feedback"
+                                  name="feedback" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <label for="rating" class="col-sm-4 col-form-label"> Rating </label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="rating" placeholder="Enter a value 0-5"
+                                name="rating" required min="1" max="5">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container text-right col-12">
+                        <div>
+                            <div class="">
+                                <button class="btn btn-default w-100 mt-4" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="appointmentID" name="appointmentID"
+                       th:value="${appointmentID}" style="display: none">
+                <input type="text" class="form-control" id="dietitianID" name="dietitianID"
+                       th:value="${dietitianID}" style="display: none">
+            </form>
+        </div>
+    </div>
+</div>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="styles/cssAndjs/bootstrap.min.js"></script>
+</body>
+
+</html>

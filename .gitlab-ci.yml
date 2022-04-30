@@ -1,0 +1,55 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
+  tags:
+    - ugrad
+
+test:
+  image: maven:3-jdk-8
+  stage: test
+  script: "mvn test"
+  tags:
+    - ugrad
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+deploy_test:
+  stage: deploy
+  tags:
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  environment: 
+    name: test
+    url: $HEROKU_DEPLOYMENT_TEST_URL
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APPLICATION_NAME_TEST --api-key=$HEROKU_API_KEY
+  only:
+    - development
+
+deploy_prod:
+  stage: deploy
+  tags:
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  environment: 
+    name: production
+    url: $HEROKU_DEPLOYMENT_PROD_URL
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APPLICATION_NAME_PROD --api-key=$HEROKU_API_KEY
+  only:
+    - main

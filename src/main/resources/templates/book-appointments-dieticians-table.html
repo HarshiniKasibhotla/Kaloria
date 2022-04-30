@@ -1,0 +1,33 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet"/>
+<link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet"/>
+<form th:action="@{/bookAppointmentUsingFilter}" method="post">
+    <select id="filterBy" name="filterBy">
+        <option th:value="empty" th:text="''"></option>
+        <option th:value="rating" th:text="'Rating'"></option>
+        <option th:value="thyroid" th:text="'Specialization - Thyroid'"></option>
+    </select>
+    <button type="submit" class="btn btn-default">Sort by</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th class="col-3">Name</th>
+        <th class="col-3">Address</th>
+        <th>Zip Code</th>
+        <th>Rating</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dietician : ${verifiedDieticians}">
+        <td class="col-3" th:text="${dietician.dieticianName}"></td>
+        <td class="col-3" th:text="${dietician.dieticianAddress}"></td>
+        <td th:text="${dietician.dieticianZipCode}"></td>
+        <td th:text="${dietician.dieticianRating}"></td>
+        <td class="text-center">
+            <a class="btn btn-default" th:href="@{/appointments/dietician-availability-slot(dietician-id = ${dietician.dieticianId})}">Book Appointment</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

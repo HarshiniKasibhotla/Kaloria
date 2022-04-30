@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <!-- CSS only -->
+    <link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet"/>
+    <link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+<div class="container main-container">
+    <div class="row pt-4">
+        <div class="col-5 m-auto text-center">
+            <h1>DIET ITEM</h1>
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-10 chart-form-container">
+            <form
+                    th:action="!${DietItemsData.IsEdit} ? @{/DietItem/Add} : @{/DietItem/{EditDietItemId}/Edit(EditDietItemId = ${DietItemsData.Id})}"
+                    th:object="${DietItemsData}" method="POST">
+                <input type="hidden" id="editContentId" th:value="*{Id}"/>
+                <div class="row">
+                    <label for="type">Type:</label> <!--  <input type="text" class="form-control" id="nutriType"
+                            th:value="${NutrientType}" th:field="*{NutrientType}">  -->
+
+                    <div class="row">
+                        <select name="NutrientType" id="nutriType" th:value="${NutrientType}" th:field="*{NutrientType}"
+                                class="form-select"
+                                aria-label="Default select example">
+                            <option value="Protein">Protein</option>
+                            <option value="Fat">Fat</option>
+                            <option value="Carbohydrates">Carbohydrates</option>
+                            <option value="Vitamins">Vitamins</option>
+                            <option value="Fiber">Fiber</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label for="name">Name:</label> <input type="text" class="form-control" id="itemName"
+                                                           th:value="${Name}" th:field="*{Name}">
+                </div>
+                <div class="row">
+                    <label for="calories">Calories:</label> <input type="text" class="form-control" id="itemCalorie"
+                                                                   th:value="${Calories}" th:field="*{Calories}">
+                </div>
+                <div class="row">
+                    <label for="category">Category</label>
+
+                    <div class="row">
+                        <select name="category" id="category" th:value="*{category}" th:field="*{category}"
+                                class="form-select"
+                                aria-label="Default select example">
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Morning Snack">Morning Snack</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Evening Snack">Evening Snack</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="AddOn">AddOn</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="health">Health Condition</label>
+
+                    <div class="row">
+                        <select name="health" id="health" th:value="*{health}" th:field="*{health}" class="form-select"
+                                aria-label="Default select example">
+                            <option value="Diabetes">Diabetes</option>
+                            <option value="Thyroid">Thyroid</option>
+                            <option value="None">None</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                        <label for="allergy">Allergies</label>
+                      
+                         <div class="row">
+                          <select name="allergy"  id="allergy" th:value="*{allergy}" th:field="*{allergy}" class="form-select"
+                                aria-label="Default select example">
+                                <option value="Gluten">Gluten</option>
+                                <option value="Lactose">Lactose</option>
+                                <option value="None">None</option>
+                                
+                            </select>
+                        </div> 
+                    </div>
+                <div class="row">
+                    <label for="meal">Meal Type</label>
+
+                    <div class="row">
+                        <select name="meal" id="meal" th:value="*{meal}" th:field="*{meal}" class="form-select"
+                                aria-label="Default select example">
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Non-Vegetarian">Non-Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <a class="btn btn-success" th:href="@{/EditDietItem/{EditableDietItemId}/protien/egg/400(EditableDietItemId = ${DietItemsData.Id}, EditableType = ${}, EditableName = ${}, Editable)}"  th:value="!${DietItemsData.IsEdit} ? 'Save' : 'Update'"></a>   -->
+                    <input type="button" class="btn btn-info btn-lg"
+                           th:value="!${DietItemsData.IsEdit} ? 'Save' : 'Update'" onclick="updateDietItems()"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/adminModule.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminModule</title>
+    <!-- CSS only -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css" rel="stylesheet">
+    <link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+<div class="container main-container">
+        <div class="row pt-4">
+            <div class="col-5 m-auto text-center">
+                <h1>Admin Portal</h1>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col-5 m-auto">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item dietitians-list-nav-item active col-6" onclick="navigationClick('Dietitian')">
+                        <a class="nav-link" aria-current="page" href="#">Dietitians</a>
+                    </li>
+                    <li class="nav-item diet-chart-nav-item col-6" onclick="navigationClick('DietChart')">
+                        <a class=" nav-link" href="#">Diet Chart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row pt-3">
+         <div class="col-5 dietitians-list-container">
+         <form action="" class="needs-validation show dietitians-list-form">
+         <div class="row pt-2">
+            <div class="col-5 m-auto">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item verified-dietitians-nav-item active col-6" onclick="navigationClick('Verified')">
+                        <a class="nav-link" aria-current="page" href="#">Verified Dietitians</a>
+                    </li>
+                    <li class="nav-item waiting-approval-nav-item col-6" onclick="navigationClick('Waiting')">
+                        <a class=" nav-link" href="#">Waiting for approval</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         	<div class="row pt-3">
+         <div class="col-5 verified-dietitians-container">
+         <form action="" class="needs-validation show verified-dietitians-form">
+         	<table>
+  					<thead>
+  						<tr>
+    						<th>Name</th>
+    						<th>Address</th>
+    						<th>Specialization</th>
+    						<th>Areas of expertise</th>
+    						<th>License Id</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+ 						 <tr>
+   							 <td>john</td>
+   							 <td>halifax</td>
+    						 <td>bla</td>
+    						 <td>bleh</td>
+    						 <td>300</td>
+    					 </tr>
+  					</tbody>	
+ 			</table>
+         </form>
+         </div>
+        </div>
+        
+        <div class="row pt-3">
+         <div class="col-5 waiting-approval-container">
+         <form action="" class="needs-validation show waiting-approval-form">
+         	<table>
+  					<thead>
+  						<tr>
+    						<th>Name</th>
+    						<th>Address</th>
+    						<th>Specialization</th>
+    						<th>Areas of expertise</th>
+    						<th>License Id</th>
+    						<th>Action</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+ 						 <tr>
+   							<td>smith</td>
+   							 <td>halifax</td>
+    						 <td>bla</td>
+    						 <td>bleh</td>
+    						 <td>400</td>
+    						 <td>
+    							 <button type="button" class="btn btn-success" id="approveRequest">Approve</button>
+            					 <button type="button" class="btn btn-danger" id="denyRequest">Deny</button>
+    						 </td>
+  						</tr>
+  					</tbody>	
+ 			</table>
+         </form>
+         </div>
+        </div>
+        
+         </form>
+         </div>
+        </div>
+        
+        <div class="row pt-3">
+         <div class="col-5 diet-chart-container">
+         <form action="" class="needs-validation show diet-chart-form">
+         	<table>
+  					<thead>
+  						<tr>
+    						<th>Type</th>
+    						<th>Name</th>
+    						<th>Calories</th>
+    						<th>Action</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+ 						 <tr>
+   							 <td>Carbs</td>
+   							 <td>Bread</td>
+    						 <td>100</td>
+    						 <td>
+    						 	 <button type="button" class="btn btn-success" id="editItem">Edit</button>
+            					 <button type="button" class="btn btn-danger" id="deleteItem">Delete</button>
+            				 </td>
+  						</tr>
+  					</tbody>	
+ 			</table>
+         </form>
+         </div>
+        </div>
+     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="adminModule.js"></script>
+</body>
+</html>

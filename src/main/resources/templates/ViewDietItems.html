@@ -1,0 +1,31 @@
+<table class="center">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Category</th>
+            <th>Health Ailments</th>
+            <th>Allergies</th>
+            <th>Meal Type</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="entry : ${dietitems}">
+            <td th:text="${entry.NutrientType}"></td>
+            <td th:text="${entry.Name}"></td>
+            <td th:text="${entry.Calories}"></td>
+            <td th:text="${entry.category}"></td>
+            <td th:text="${entry.health}"></td>
+            <td th:text="${entry.allergy}"></td>
+            <td th:text="${entry.meal}"></td>
+            <td>
+                
+                <a class="btn btn-success" th:href="@{/DietItem/{EditableDietItemId}/Edit(EditableDietItemId = ${entry.Id})}">Edit</a>                
+                <a class="btn btn-danger" th:href="@{/DietItem/{DeleteableDietItemId}/Delete(DeleteableDietItemId = ${entry.Id})}">Delete</a>                   
+
+            </td>
+        </tr>
+    </tbody>
+</table>

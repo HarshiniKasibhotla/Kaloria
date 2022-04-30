@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <!-- CSS only -->
+    <link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet"/>
+    <link rel="icon" href="../Images/favicon.png">
+</head>
+
+<body>
+<div class="container main-container">
+    <div class="row pt-4">
+        <div class="col-5 m-auto text-center">
+            <h1>KALORIA</h1>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col-5 m-auto">
+            <ul class="nav nav-tabs">
+                <li class="nav-item diet-chart-nav-item active col-6" onclick="navigationClick('Chart')"><a
+                        class="nav-link" aria-current="page" href="#">Diet Chart</a></li>
+                <li class="nav-item dietician-status-nav-item col-6" onclick="navigationClick('Dietician')"><a
+                        class=" nav-link">Dieticians</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-10 chart-form-container">
+            <form class="needs-validation show diet-chart-form">
+
+                <div class="row pt-12">
+                    <div id="dietItemsContent"></div>
+                    <div class="row">
+                        <div class="container text-right col-4">
+                            <div>
+                                <div>
+                                    <a class="btn btn-success" th:href="@{/DietItem/Add}">Add</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+            <form class="needs-validation hide dietcian-approval-form">
+                <div class="row pt-12">
+                    <div class="col-13 second-container">
+                        <div class="row pt-12">
+                            <div class="col-12 m-auto">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item verified-nav-item active col-6"
+                                        onclick="navigationClick('Verified')"><a class="nav-link"
+                                                                                 aria-current="page" href="#">Verified
+                                        Doctors</a></li>
+                                    <li class="nav-item waiting-nav-item col-6"
+                                        onclick="navigationClick('Waiting')"><a class=" nav-link" href="#">Waiting
+                                        for approval</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+
+                            <div class="col-12 dietician-sub-container">
+
+
+                                <div class="row pt-12">
+                                    <div class=" verified-container">
+                                        <div id="verifiedContent"></div>
+                                    </div>
+                                    <div class=" waiting-container">
+                                        <div id="waitingContent"></div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/dieticianApproval.js"></script>
+<script src="/js/adminModule.js"></script>
+</body>
+
+</html>

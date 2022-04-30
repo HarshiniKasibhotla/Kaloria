@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Success Page</title>
+<link th:href="@{/styles/cssAndjs/app.css}" rel="stylesheet" />
+<link th:href="@{/styles/cssAndjs/bootstrap.css}" rel="stylesheet" />
+<link rel="icon" href="..Images/favicon.png">
+</head>
+<body>
+
+	<h3>Welcome</h3>
+		<p th:text="${session.username}"></p>
+		<a th:href = "@{/logout}">logout</a>
+</body>
+</html>

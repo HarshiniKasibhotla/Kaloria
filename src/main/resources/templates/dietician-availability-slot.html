@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<div th:text="'Below are the mentioned timings for the doctor - ' + ${selectedDietician.dieticianName} + ' - ' + ${selectedDietician.availabilityHours} + ' - Standard appointment time ' + ${selectedDietician.timeSlot}"></div>
+<div>----------------</div>
+<div class="row mb-2">
+    <form th:action="@{/appointments/dietician-availability-slot/selectTimeSlot}" method="post"
+          class="needs-validation hide doctor-signup-form">
+        <label for="appointmentDate" class="col-sm-4 col-form-label">Appointment Date</label>
+        <div class="col-sm-8">
+            <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+        </div>
+        <input type="text" class="form-control" id="dietitianID" name="dietitianID" required
+        th:value="${dietitianID}" style="display: none">
+        <button type="submit" class="btn btn-primary">search available appointment</button>
+    </form>
+</div>
+
+<div>----------------</div>
+<div th:if="${showSlots == true}">
+    <form th:action="@{/appointments/dietician-availability-slot/bookingAppointmentSubmit}" method="post">
+        <select id="selectedSlotTime" name="selectedSlotTime">
+            <option th:each="i : ${startTimeList}" th:value="${i}" th:text="${i}"></option>
+        </select>
+        <input type="text" class="form-control" id="dietitianID" name="dietitianID" required
+               th:value="${dietitianID}" style="display: none">
+        <input type="text" class="form-control" id="appointmentDate" name="appointmentDate" required
+               th:value="${appointmentDate}" style="display: none">
+        <input type="text" class="form-control" id="timeSlotDuration" name="timeSlotDuration" required
+               th:value="${timeSlotDuration}" style="display: none">
+        <button type="submit" class="btn btn-primary">Book appointment</button>
+    </form>
+</div>
+
+
+</html>
